@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,body {
+    width:100%;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 400px;
+    margin-inline: auto;
+}
+
+.card {
+    background-color: silver;
+    position:relative;
+}
+
+.flow > * + * {
+    margin-top: 1rem;
+}
+
+.swiper {overflow: visible;}
+  
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+  
+.active-flip-item {z-index: 2;}
+
+[data-barba="container"] {
+    width:100%;
+}
+
+#animate {
+    position: absolute;
+}
+
+.full-screen #animate {
+    background-color: green;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+.animate {
+    top: 0;
+    left: 0;
+    background: silver;
+    padding: 5em;
+}
+
+.new-container {
+    max-width: 230px;
+    margin-inline: auto;
+}
+
+.new-container.flipped .animate {
+    background: green;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+.whole-page {
+    pointer-events: none;
+    opacity: 0;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
