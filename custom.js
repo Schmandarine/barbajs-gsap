@@ -5,58 +5,72 @@ document.addEventListener("DOMContentLoaded", function (event) {
     gsap.registerPlugin(Flip);
 
     const animationEnter = (container) => {
-      appWrapper.classList.remove("full-screen");
       return gsap.from(container, {
-        autoAlpha: 0,
+        autoAlpha: 0.4,
         duration: 1,
         clearProps: "all",
         ease: "none",
+        delay: 3,
       });
     };
     const animationLeave = async (data) => {
-      const parentCard = await fixJump(data.trigger);
+      console.log(!data.trigger.classList.contains("mainnav"));
+      /*       if (!data.trigger.classList.contains("mainnav")) {
+        const parentCard = await fixJump(data.trigger);
 
-      parentCard.style.zIndex = "999";
-      const flipState = Flip.getState(parentCard, {
-        props: "backgroundColor,color",
-      });
+        parentCard.style.zIndex = "999";
+        const flipState = Flip.getState(parentCard, {
+          props: "backgroundColor,color",
+        });
 
-      parentCard.classList.add("animateActive");
-      console.log(parentCard.classList);
+        for (const className in transitionsMap) {
+          if (data.trigger.classList.contains(className)) {
+            transitionsMap[className](data, parentCard);
+          }
+        }
 
-      Flip.from(flipState, {
-        duration: 1,
-        ease: "power1.inOut",
-      });
+        Flip.from(flipState, {
+          duration: 0.3,
+          delay: 0,
+          ease: "power1.inOut",
+        });
+      } */
 
       return gsap.to(data.current.container, {
         autoAlpha: 0,
-        duration: 1,
+        duration: 2,
         clearProps: "all",
         ease: "none",
-        delay: 2,
+        delay: 1,
       });
     };
-
     const fixJump = (trigger) => {
       return new Promise((resolve, reject) => {
-        console.log("duplicate DOM");
+        console.log("start promise");
         const parent = trigger.closest(".card");
-        //const clone = parent.cloneNode(true);
-        //clone.classList.add("absolute");
-        //parent.parentNode.appendChild(clone);
         gsap.set(parent.parentNode, {
           height: gsap.getProperty(parent, "height"),
         });
-        setTimeout(resolve(parent), 2000);
+        setTimeout(resolve(parent), 20000);
       });
+    };
+
+    const transitionsMap = {
+      link1: function (data, parentCard) {
+        parentCard.classList.add("animateFirst");
+      },
+      link2: function (data, parentCard) {
+        parentCard.classList.add("animateSecond");
+      },
     };
 
     barba.init({
       transitions: [
         {
           async leave(data) {
+            console.log("start leaving");
             await animationLeave(data);
+            console.log("end leaving");
           },
           enter({ next }) {
             console.log("entering");

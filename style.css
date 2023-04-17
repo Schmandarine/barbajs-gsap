@@ -49,14 +49,18 @@ html,body {
     position: absolute;
 }
 
-.card.animateActive {
-    background-color: green;
+.animateFirst,
+.animateSecond {
     position: fixed;
     right: 0;
     left: 0;
     top: 0;
     height: 100%;
 }
+
+.animateFirst {background-color: green;}
+.animateSecond {background-color: purple;}
+
 
 .animate {
     top: 0;
