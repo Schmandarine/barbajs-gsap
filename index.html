@@ -7,40 +7,34 @@
     <title>Barba JS</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href=" https://css-frameworking.vercel.app/styles/dist/style.css">
 </head>
 <body data-barba="wrapper">
-    <div class="whole-page"></div>
 
-
-
-        <h1 class="trigger">trigger</h1>
-        <div class="new-container">
-            <div class="animate">
-                gets animated
-            </div>
-        </div>
-        <nav>
+        <nav class="p-3 bg-dark mb-5">
             <a href="./index.html">index</a>
             <a href="./second.html">second</a>
             <a href="./third.html">third</a>
         </nav>
+
+        <!--
+            BARBA CONTAINER GRID PAGE
+        -->
         <div data-barba="container" data-barba-namespace="grid-page">
             <div class="container">
                 <h1>First page</h1>
                 <div class="flow">
-                    <div class="card">
-                        <div id="animate">
+                    <div class="animation-wrapper">
+                        <div class="card p-3">
                             card body Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam non commodi adipisci aut reprehenderit numquam voluptatem, unde vero aliquam iste vel repellendus ex fugiat perferendis dolorem architecto aspernatur laboriosam dolores?
-                            <a class="link" href="./second.html">second</a>
-                        </div>
-                        <div class="duplicate">
-                            card body Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam non commodi adipisci aut reprehenderit numquam voluptatem, unde vero aliquam iste vel repellendus ex fugiat perferendis dolorem architecto aspernatur laboriosam dolores?
-                            <a class="link" href="./second.html">second</a>
+                            <a class="link link1" href="./second.html">second</a>
                         </div>
                     </div>
-                    <div class="card">
-                        card body Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam non commodi adipisci aut reprehenderit numquam voluptatem, unde vero aliquam iste vel repellendus ex fugiat perferendis dolorem architecto aspernatur laboriosam dolores?
-                        <a class="link" href="./third.html">third</a>
+                    <div class="animation-wrapper">
+                        <div class="card p-3">                        
+                            card body Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam non commodi adipisci aut reprehenderit numquam voluptatem, unde vero aliquam iste vel repellendus ex fugiat perferendis dolorem architecto aspernatur laboriosam dolores?
+                            <a class="link link2" href="./third.html">third</a>
+                        </div>
                     </div>
                 </div>
             </div>

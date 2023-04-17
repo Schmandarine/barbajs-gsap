@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+a {
+    color: purple!important;
+}
+
 html,body {
     width:100%;
     min-height: 100vh;
@@ -36,11 +40,16 @@ html,body {
     width:100%;
 }
 
-#animate {
+.animation-wrapper {
+    position:relative;
+}
+
+.absolute {
+    top: 0;
     position: absolute;
 }
 
-.full-screen #animate {
+.card.animateActive {
     background-color: green;
     position: fixed;
     right: 0;
@@ -52,7 +61,7 @@ html,body {
 .animate {
     top: 0;
     left: 0;
-    background: silver;
+    //background: silver;
     padding: 5em;
 }
 

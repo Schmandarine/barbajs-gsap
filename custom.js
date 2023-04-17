@@ -1,11 +1,8 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-  console.log("DOM elements loaded");
   const appWrapper = document.querySelector('[data-barba="wrapper"]');
-  const animateElm = document.querySelector("#animate");
 
   window.addEventListener("load", (event) => {
     gsap.registerPlugin(Flip);
-    console.log("dependencies loaded");
 
     const animationEnter = (container) => {
       appWrapper.classList.remove("full-screen");
@@ -16,14 +13,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
         ease: "none",
       });
     };
-    const animationLeave = (data) => {
-      const flipState = Flip.getState(animateElm, {
+    const animationLeave = async (data) => {
+      const parentCard = await fixJump(data.trigger);
+
+      parentCard.style.zIndex = "999";
+      const flipState = Flip.getState(parentCard, {
         props: "backgroundColor,color",
       });
-      appWrapper.classList.add("full-screen");
+
+      parentCard.classList.add("animateActive");
+      console.log(parentCard.classList);
 
       Flip.from(flipState, {
-        duration: 2,
+        duration: 1,
         ease: "power1.inOut",
       });
 
@@ -36,11 +38,24 @@ document.addEventListener("DOMContentLoaded", function (event) {
       });
     };
 
+    const fixJump = (trigger) => {
+      return new Promise((resolve, reject) => {
+        console.log("duplicate DOM");
+        const parent = trigger.closest(".card");
+        //const clone = parent.cloneNode(true);
+        //clone.classList.add("absolute");
+        //parent.parentNode.appendChild(clone);
+        gsap.set(parent.parentNode, {
+          height: gsap.getProperty(parent, "height"),
+        });
+        setTimeout(resolve(parent), 2000);
+      });
+    };
+
     barba.init({
       transitions: [
         {
           async leave(data) {
-            animateElm.style.zIndex = "999";
             await animationLeave(data);
           },
           enter({ next }) {
@@ -49,31 +64,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
           },
         },
       ],
-    });
-
-    document.querySelector(".trigger").addEventListener("click", function (e) {
-      const state = Flip.getState(document.querySelector(".animate"), {
-        props: "backgroundColor,color",
-      });
-
-      Flip.fit(".animate", ".whole-page", {
-        duration: 1,
-        ease: "power1.inOut",
-        onComplete: () => console.log("done!"),
-      });
-
-      //document.querySelector(".new-container").classList.toggle("flipped");
-
-      /*       Flip.from(state, {
-        duration: 1,
-        ease: "power1.inOut",
-        absoluteOnLeave: true,
-        spin: true,
-        zIndex: 9999,
-        onComplete: () => {
-          console.log("done");
-        },
-      }); */
     });
   });
 });
