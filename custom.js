@@ -15,8 +15,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     };
     const animationLeave = async (data) => {
       console.log(!data.trigger.classList.contains("mainnav"));
-      /*       if (!data.trigger.classList.contains("mainnav")) {
+
+      if (!data.trigger.classList.contains("mainnav")) {
         const parentCard = await fixJump(data.trigger);
+        console.log("after the promise");
 
         parentCard.style.zIndex = "999";
         const flipState = Flip.getState(parentCard, {
@@ -34,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
           delay: 0,
           ease: "power1.inOut",
         });
-      } */
+      }
 
       return gsap.to(data.current.container, {
         autoAlpha: 0,
@@ -51,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         gsap.set(parent.parentNode, {
           height: gsap.getProperty(parent, "height"),
         });
-        setTimeout(resolve(parent), 20000);
+        setTimeout(() => resolve(parent), 1000);
       });
     };
 
